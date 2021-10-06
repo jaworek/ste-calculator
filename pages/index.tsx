@@ -34,7 +34,7 @@ const Home: NextPage = () => {
     setLoading(true);
     fetch(`${URL + walletAddress}`).then((response) => {
       // if (!response.ok) {
-        // throw new Error(response.statusText);
+      // throw new Error(response.statusText);
       // }
 
       response
@@ -42,9 +42,6 @@ const Home: NextPage = () => {
         .then((data) => {
           console.log(data);
           setData(data);
-        })
-        .catch((error) => {
-          setError(error);
         })
         .finally(() => {
           setLoading(false);
@@ -84,7 +81,28 @@ const Home: NextPage = () => {
         {data ? <Statistics data={data} /> : null}
       </main>
 
-      <footer className={styles.footer}>Hello</footer>
+      <footer className={styles.footer}>
+        <div>
+          Repository:{" "}
+          <a
+            href="https://github.com/jaworek/ste-calculator"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://github.com/jaworek/ste-calculator
+          </a>
+        </div>
+        <div>
+          Data source:{" "}
+          <a
+            href="https://github.com/starterra/tools"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://github.com/starterra/tools
+          </a>
+        </div>
+      </footer>
     </div>
   );
 };
