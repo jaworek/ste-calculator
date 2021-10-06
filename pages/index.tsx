@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
-import Image from 'next/image';
-import logoSrc from '../public/star-terra-logo.svg';
+import Image from "next/image";
+import logoSrc from "../public/star-terra-logo.svg";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
@@ -19,15 +19,15 @@ type Data = {
 
 const Tier = ({ steValue }: { steValue: number }) => {
   if (steValue >= 250 && steValue <= 2750) {
-    return <div>Tier 1 or Squardron</div>;
+    return <div>You qualify for Tier 1 or Squardron.</div>;
   }
 
   if (steValue >= 250 && steValue < 3000) {
-    return <div>Tier 1</div>;
+    return <div>You qualify for Tier 1.</div>;
   }
 
   if (steValue >= 3000) {
-    return <div>Tier 2, 3, 4</div>;
+    return <div>Congratulations! You qualify for Tier 2, 3, and 4.</div>;
   }
 
   return (
@@ -35,12 +35,30 @@ const Tier = ({ steValue }: { steValue: number }) => {
   );
 };
 
+const Error500 = () => {
+  return <div>Something is wrong on our side. Please, try again.</div>;
+};
+
+const Error404 = () => {
+  return <div>O, oh! It seems that you entered wrong address. 😮</div>;
+};
+
+const Error = ({ error }: { error: ErrorState }) => {
+  if (error.status === 404) {
+    return <Error404 />;
+  }
+
+  if (error.status === 500) {
+    return <Error500 />;
+  }
+
+  return <div>Unknown error</div>
+};
+
 const Disclaimer = () => {
   return (
     <div className={styles.disclaimer}>
-      <div>
-        This tool does not check if you qualify for Whalecraft!
-      </div>
+      <div>This tool does not check if you qualify for Whalecraft!</div>
       <div>Data presented here may be inaccurate!</div>
     </div>
   );
@@ -57,29 +75,37 @@ const Statistics = ({ data }: { data: Data }) => {
   );
 };
 
+type ErrorState = {
+  status: number;
+  statusMessage: string;
+};
+
 const Home: NextPage = () => {
   const [walletAddress, setWalletAddress] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState<ErrorState>();
   const [data, setData] = useState<Data>();
 
   const checkWallet = () => {
     setLoading(true);
-    fetch(`${URL + walletAddress}`).then((response) => {
-      // if (!response.ok) {
-      // throw new Error(response.statusText);
-      // }
+    fetch(`${URL + walletAddress}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw response;
+        }
 
-      response
-        .json()
-        .then((data) => {
+        response.json().then((data) => {
           console.log(data);
           setData(data);
-        })
-        .finally(() => {
-          setLoading(false);
         });
-    });
+      })
+      .catch((e: Response) => {
+        console.log("x", e);
+        setError({ status: e.status, statusMessage: e.statusText });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -91,18 +117,18 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Image src={logoSrc} alt="" />
+        <Image src={logoSrc} alt="" className={styles.logo} />
         <h1 className={styles.title}>Unofficial STE calculator</h1>
 
         <Disclaimer />
 
         <div className={styles.walletInput}>
           <div>
-          Terra wallet address:
-          <input
-            value={walletAddress}
-            onChange={(event) => setWalletAddress(event.target.value)}
-          />
+            Terra wallet address:{" "}
+            <input
+              value={walletAddress}
+              onChange={(event) => setWalletAddress(event.target.value)}
+            />
           </div>
           <button onClick={checkWallet}>Check</button>
         </div>
@@ -114,16 +140,18 @@ const Home: NextPage = () => {
             }
 
             if (error) {
-              return <div>Error: {error}</div>;
+              return <Error error={error} />;
+            }
+
+            if (data) {
+              return (
+                <>
+                  <Statistics data={data} />
+                  <Tier steValue={data.ste_value} />
+                </>
+              );
             }
           })()}
-
-          {data ? (
-            <>
-              <Statistics data={data} />
-              <Tier steValue={data.ste_value} />
-            </>
-          ) : null}
         </div>
       </main>
 
