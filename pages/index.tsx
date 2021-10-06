@@ -13,6 +13,28 @@ type Data = {
   stt_amount: number;
 };
 
+const Tier = ({ steValue }: { steValue: number }) => {
+  if (steValue >= 250 && steValue <= 2750) {
+    return <div>Tier 1 or Squardron</div>;
+  }
+
+  if (steValue >= 250 && steValue < 3000) {
+    return <div>Tier 1</div>;
+  }
+
+  if (steValue >= 3000) {
+    return <div>Tier 2, 3, 4</div>;
+  }
+
+  return (
+    <div>Unfortunately, you do not qualify for any Tier or Squadrons :(</div>
+  );
+};
+
+const Disclaimer = () => {
+  return <div>This tool does not check if you qualify for Whalecraft</div>;
+};
+
 const Statistics = ({ data }: { data: Data }) => {
   return (
     <div>
@@ -60,7 +82,10 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>STE calculator</h1>
 
+        <Disclaimer />
+
         <div>
+          Terra wallet address:
           <input
             value={walletAddress}
             onChange={(event) => setWalletAddress(event.target.value)}
@@ -78,7 +103,12 @@ const Home: NextPage = () => {
           }
         })()}
 
-        {data ? <Statistics data={data} /> : null}
+        {data ? (
+          <>
+            <Statistics data={data} />
+            <Tier steValue={data.ste_value} />
+          </>
+        ) : null}
       </main>
 
       <footer className={styles.footer}>
