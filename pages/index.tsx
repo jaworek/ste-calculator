@@ -88,6 +88,7 @@ const Home: NextPage = () => {
 
   const checkWallet = () => {
     setLoading(true);
+    setError(undefined);
     fetch(`${URL + walletAddress}`)
       .then((response) => {
         if (!response.ok) {
@@ -95,12 +96,10 @@ const Home: NextPage = () => {
         }
 
         response.json().then((data) => {
-          console.log(data);
           setData(data);
         });
       })
       .catch((e: Response) => {
-        console.log("x", e);
         setError({ status: e.status, statusMessage: e.statusText });
       })
       .finally(() => {
