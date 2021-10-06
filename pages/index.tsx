@@ -5,6 +5,8 @@ import styles from "../styles/Home.module.css";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
+const FACTIONS_URL = "https://api.starterra.io/factions";
+
 type Data = {
   address: string;
   block_time: number;
@@ -32,7 +34,14 @@ const Tier = ({ steValue }: { steValue: number }) => {
 };
 
 const Disclaimer = () => {
-  return <div>This tool does not check if you qualify for Whalecraft</div>;
+  return (
+    <div className={styles.disclaimer}>
+      <div>
+        This tool does not check if you qualify for Whalecraft!
+      </div>
+      <div>Data presented here may be inaccurate!</div>
+    </div>
+  );
 };
 
 const Statistics = ({ data }: { data: Data }) => {
@@ -93,22 +102,24 @@ const Home: NextPage = () => {
           <button onClick={checkWallet}>Check</button>
         </div>
 
-        {(() => {
-          if (loading) {
-            return <div>Loading...</div>;
-          }
+        <div className={styles.content}>
+          {(() => {
+            if (loading) {
+              return <div>Loading...</div>;
+            }
 
-          if (error) {
-            return <div>Error: {error}</div>;
-          }
-        })()}
+            if (error) {
+              return <div>Error: {error}</div>;
+            }
+          })()}
 
-        {data ? (
-          <>
-            <Statistics data={data} />
-            <Tier steValue={data.ste_value} />
-          </>
-        ) : null}
+          {data ? (
+            <>
+              <Statistics data={data} />
+              <Tier steValue={data.ste_value} />
+            </>
+          ) : null}
+        </div>
       </main>
 
       <footer className={styles.footer}>

@@ -3,8 +3,8 @@
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   height: 100vh;
 }
 
@@ -13,8 +13,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
 }
 
 .footer {
@@ -22,7 +22,7 @@
   height: 100px;
   border-top: 1px solid #eaeaea;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -58,6 +58,21 @@
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+.disclaimer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 10px;
+  background-color: yellow;
+  border: 1px solid;
+}
+
+.content {
+  background-color: bisque;
+  padding: 10px;
+  height: 40vh;
 }
 
 .code {
