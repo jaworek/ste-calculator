@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
+import Image from 'next/image';
+import logoSrc from '../public/star-terra-logo.svg';
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
@@ -89,16 +91,19 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>STE calculator</h1>
+        <Image src={logoSrc} alt="" />
+        <h1 className={styles.title}>Unofficial STE calculator</h1>
 
         <Disclaimer />
 
-        <div>
+        <div className={styles.walletInput}>
+          <div>
           Terra wallet address:
           <input
             value={walletAddress}
             onChange={(event) => setWalletAddress(event.target.value)}
           />
+          </div>
           <button onClick={checkWallet}>Check</button>
         </div>
 
