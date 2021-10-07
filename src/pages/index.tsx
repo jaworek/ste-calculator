@@ -1,83 +1,30 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "./Home.module.css";
 import Image from "next/image";
-import logoSrc from "../public/star-terra-logo.svg";
+import logoSrc from "../../public/star-terra-logo.svg";
+import { Disclaimer } from "../components/Disclaimer";
+import { Tier } from "../components/Tier";
+import { Error } from "../components/Error";
+import { Data } from "../types/data";
+import { ErrorState } from "../types/error";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
 const FACTIONS_URL = "https://api.starterra.io/factions";
 
-type Data = {
-  address: string;
-  block_time: number;
-  lp_amount: number;
-  ste_value: number;
-  stt_amount: number;
-};
-
-const Tier = ({ steValue }: { steValue: number }) => {
-  if (steValue >= 250 && steValue <= 2750) {
-    return <div>You qualify for Tier 1 or Squardron.</div>;
-  }
-
-  if (steValue >= 250 && steValue < 3000) {
-    return <div>You qualify for Tier 1.</div>;
-  }
-
-  if (steValue >= 3000) {
-    return <div>Congratulations! You qualify for Tier 2, 3, and 4.</div>;
-  }
-
-  return (
-    <div>Unfortunately, you do not qualify for any Tier or Squadrons :(</div>
-  );
-};
-
-const Error500 = () => {
-  return <div>Something is wrong on our side. Please, try again.</div>;
-};
-
-const Error404 = () => {
-  return <div>O, oh! It seems that you entered wrong address. 😮</div>;
-};
-
-const Error = ({ error }: { error: ErrorState }) => {
-  if (error.status === 404) {
-    return <Error404 />;
-  }
-
-  if (error.status === 500) {
-    return <Error500 />;
-  }
-
-  return <div>Unknown error</div>
-};
-
-const Disclaimer = () => {
-  return (
-    <div className={styles.disclaimer}>
-      <div>This tool does not check if you qualify for Whalecraft!</div>
-      <div>Data presented here may be inaccurate!</div>
-    </div>
-  );
-};
-
 const Statistics = ({ data }: { data: Data }) => {
   return (
     <div>
       <div>Address: {data.address}</div>
-      <div>LP staked: {data.lp_amount}</div>
-      <div>STT staked: {data.stt_amount}</div>
-      <div>STE value: {data.ste_value}</div>
+      <div style={{ padding: "10px" }}>
+        <div>LP staked: {data.lp_amount}</div>
+        <div>STT staked: {data.stt_amount}</div>
+        <div>STE value: {data.ste_value}</div>
+      </div>
     </div>
   );
-};
-
-type ErrorState = {
-  status: number;
-  statusMessage: string;
 };
 
 const Home: NextPage = () => {
