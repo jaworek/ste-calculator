@@ -4,28 +4,17 @@ import { useState } from "react";
 import styles from "./Home.module.css";
 import Image from "next/image";
 import logoSrc from "../../public/star-terra-logo.svg";
-import { Disclaimer } from "../components/Disclaimer";
+import { Disclaimer } from "../components/Disclaimer/Disclaimer";
 import { Tier } from "../components/Tier";
 import { Error } from "../components/Error";
 import { Data } from "../types/data";
 import { ErrorState } from "../types/error";
+import { Footer } from "../components/Footer/Footer";
+import { Statistics } from "../components/Statistics/Statistics";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
 const FACTIONS_URL = "https://api.starterra.io/factions";
-
-const Statistics = ({ data }: { data: Data }) => {
-  return (
-    <div>
-      <div>Address: {data.address}</div>
-      <div style={{ padding: "10px" }}>
-        <div>LP staked: {data.lp_amount}</div>
-        <div>STT staked: {data.stt_amount}</div>
-        <div>STE value: {data.ste_value}</div>
-      </div>
-    </div>
-  );
-};
 
 const Home: NextPage = () => {
   const [walletAddress, setWalletAddress] = useState("");
@@ -43,6 +32,7 @@ const Home: NextPage = () => {
         }
 
         response.json().then((data) => {
+          console.log("dat", data);
           setData(data);
         });
       })
@@ -101,28 +91,7 @@ const Home: NextPage = () => {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <div>
-          Repository:{" "}
-          <a
-            href="https://github.com/jaworek/ste-calculator"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://github.com/jaworek/ste-calculator
-          </a>
-        </div>
-        <div>
-          Data source:{" "}
-          <a
-            href="https://github.com/starterra/tools"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://github.com/starterra/tools
-          </a>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
