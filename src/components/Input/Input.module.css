@@ -1,0 +1,11 @@
+.root {
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    border: 2px solid #ffee00;
+    border-radius: 21px;
+    line-height: 1.1876em;
+    letter-spacing: 0.00938em;
+    cursor: text;
+    background-color: #10161e;
+}

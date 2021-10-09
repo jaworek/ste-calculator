@@ -4,7 +4,7 @@ type Data = {
   lp_amount: number;
   ste_value: number;
   stt_amount: number;
-  faction: string;
+  faction: "degens" | "interstellars" | "lunatics";
 };
 
 export type { Data };

@@ -1,4 +1,4 @@
-import { ErrorState } from "../types/error";
+import { ErrorState } from "../../types/error";
 
 const Error500 = () => {
   return <div>Something is wrong on our side. Please, try again.</div>;

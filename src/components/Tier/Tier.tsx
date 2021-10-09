@@ -1,3 +1,5 @@
+import styles from "./Tier.module.css";
+
 const Tier = ({ steValue }: { steValue: number }) => {
   if (steValue >= 250 && steValue <= 2750) {
     return <div>You qualify for Tier 1 or Squardron.</div>;

@@ -5,12 +5,15 @@ import styles from "./Home.module.css";
 import Image from "next/image";
 import logoSrc from "../../public/star-terra-logo.svg";
 import { Disclaimer } from "../components/Disclaimer/Disclaimer";
-import { Tier } from "../components/Tier";
-import { Error } from "../components/Error";
+import { Tier } from "../components/Tier/Tier";
+import { Error } from "../components/Error/Error";
 import { Data } from "../types/data";
 import { ErrorState } from "../types/error";
 import { Footer } from "../components/Footer/Footer";
 import { Statistics } from "../components/Statistics/Statistics";
+import { Button } from "../components/Button/Button";
+import { Faction } from "../components/Faction/Faction";
+import Input from "../components/Input/Input";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
@@ -61,12 +64,12 @@ const Home: NextPage = () => {
         <div className={styles.walletInput}>
           <div>
             Terra wallet address:{" "}
-            <input
+            <Input
               value={walletAddress}
               onChange={(event) => setWalletAddress(event.target.value)}
             />
           </div>
-          <button onClick={checkWallet}>Check</button>
+          <Button onClick={checkWallet} disabled={loading} />
         </div>
 
         <div className={styles.content}>
@@ -84,6 +87,7 @@ const Home: NextPage = () => {
                 <>
                   <Statistics data={data} />
                   <Tier steValue={data.ste_value} />
+                  <Faction faction={data.faction} />
                 </>
               );
             }

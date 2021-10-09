@@ -1,3 +1,30 @@
 .root {
+  color: rgba(0, 0, 0, 0.87);
+  border: 10px solid #ffee00;
+  border-radius: 27px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 8px 8px;
+  min-width: 175px;
+  background-color: #ffee00;
+  height: 42px;
+  cursor: pointer;
+  line-height: 22.75px;
+  letter-spacing: 0.37141px;
+  appearance: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
 
+.root:hover {
+  box-shadow: 0px 0px 10px #ffee00;
+}
+
+.disabled {
+  color: #19202b;
+  opacity: 0.5;
 }
