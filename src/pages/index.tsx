@@ -86,7 +86,7 @@ const Home: NextPage = () => {
               return (
                 <>
                   <Statistics data={data} />
-                  <Tier steValue={data.ste_value} />
+                  <Tier steValue={data.ste_value} faction={data.faction} />
                   <Faction faction={data.faction} />
                 </>
               );

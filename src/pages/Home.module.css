@@ -39,6 +39,10 @@
   border-radius: 27px;
   padding: 10px;
   height: 40vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .walletInput {

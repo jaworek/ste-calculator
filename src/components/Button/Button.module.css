@@ -28,3 +28,8 @@
   color: #19202b;
   opacity: 0.5;
 }
+
+.disabled:hover {
+  cursor: auto;
+  box-shadow: none;
+}

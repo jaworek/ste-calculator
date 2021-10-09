@@ -1,6 +1,26 @@
 import styles from "./Tier.module.css";
+import { Faction } from "../../types/faction";
 
-const Tier = ({ steValue }: { steValue: number }) => {
+type Props = {
+  steValue: number;
+  faction: Faction;
+};
+
+const name = (faction: Faction) => {
+  if (faction === "degens") {
+    return "Degen";
+  }
+
+  if (faction === "interstellars") {
+    return "Interstellar";
+  }
+
+  if (faction === "lunatics") {
+    return "Lunatic";
+  }
+};
+
+const Tier = ({ steValue, faction }: Props) => {
   if (steValue >= 250 && steValue <= 2750) {
     return <div>You qualify for Tier 1 or Squardron.</div>;
   }
@@ -10,7 +30,12 @@ const Tier = ({ steValue }: { steValue: number }) => {
   }
 
   if (steValue >= 3000) {
-    return <div>Congratulations! You qualify for Tier 2, 3, and 4.</div>;
+    return (
+      <div>
+        Congratulations! You are a true{" "}
+        <span className={styles.faction}>{name(faction)}</span> 🔥🔥🔥
+      </div>
+    );
   }
 
   return (
