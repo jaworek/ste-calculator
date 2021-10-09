@@ -1,0 +1,11 @@
+.root {
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+}
+
+.ste {
+    align-self: center;
+    font-weight: bold;
+    font-size: 25px;
+}

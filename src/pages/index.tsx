@@ -14,6 +14,7 @@ import { Statistics } from "../components/Statistics/Statistics";
 import { Button } from "../components/Button/Button";
 import { Faction } from "../components/Faction/Faction";
 import Input from "../components/Input/Input";
+import { Loading } from "../components/Loading/Loading";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
@@ -75,7 +76,7 @@ const Home: NextPage = () => {
         <div className={styles.content}>
           {(() => {
             if (loading) {
-              return <div>Loading...</div>;
+              return <Loading />;
             }
 
             if (error) {

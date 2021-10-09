@@ -1,0 +1,10 @@
+.root {
+    background-color: rgb(25, 32, 43);
+    border: 6px solid #fe0;
+    border-radius: 27px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}

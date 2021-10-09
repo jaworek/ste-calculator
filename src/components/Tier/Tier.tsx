@@ -20,6 +20,20 @@ const name = (faction: Faction) => {
   }
 };
 
+const tierNumber = (faction: Faction) => {
+  if (faction === "degens") {
+    return 4;
+  }
+
+  if (faction === "interstellars") {
+    return 3;
+  }
+
+  if (faction === "lunatics") {
+    return 2;
+  }
+};
+
 const Tier = ({ steValue, faction }: Props) => {
   if (steValue >= 250 && steValue <= 2750) {
     return <div>You qualify for Tier 1 or Squardron.</div>;
@@ -32,8 +46,11 @@ const Tier = ({ steValue, faction }: Props) => {
   if (steValue >= 3000) {
     return (
       <div>
-        Congratulations! You are a true{" "}
-        <span className={styles.faction}>{name(faction)}</span> 🔥🔥🔥
+        Congratulations! You qualify for Tier {tierNumber(faction)}.
+        <div>
+          You are a true <span className={styles.faction}>{name(faction)}</span>{" "}
+          🔥🔥🔥
+        </div>
       </div>
     );
   }
