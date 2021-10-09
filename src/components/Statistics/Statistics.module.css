@@ -1,11 +1,19 @@
 .root {
-    display: flex;
-    flex-flow: column;
-    padding: 10px;
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
+}
+
+.lp {
+  align-self: center;
+}
+
+.stt {
+  align-self: center;
 }
 
 .ste {
-    align-self: center;
-    font-weight: bold;
-    font-size: 25px;
+  align-self: center;
+  font-weight: bold;
+  font-size: 25px;
 }

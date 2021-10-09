@@ -7,9 +7,9 @@ const Statistics = ({ data }: { data: Data }) => {
     <div>
       <div>Address: {data.address}</div>
       <div className={styles.root}>
-        <div>{data.lp_amount.toFixed(2)} LP * 1.25</div>
-        <div>+ {data.stt_amount} STT</div>
-        <div>=</div>
+        <div className={styles.lp}>{data.lp_amount.toFixed(2)} LP * 1.25</div>
+        <div className={styles.stt}>+ {data.stt_amount} STT</div>
+        <div className={styles.stt}>=</div>
         <div className={styles.ste}>
           <CountUp end={data.ste_value} duration={1} decimals={2} /> STE
         </div>
