@@ -1,14 +1,22 @@
 import styles from "./Link.module.css";
+import { ReactNode } from "react";
+import cx from "classnames";
 
 type Props = {
   href: string;
-  text: string;
+  content: ReactNode;
+  className?: string;
 };
 
-const Link = ({ href, text }: Props) => {
+const Link = ({ href, content, className }: Props) => {
   return (
-    <a href={href} target="_blank" rel="noreferrer" className={styles.root}>
-      {text}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className={cx(styles.root, className)}
+    >
+      {content}
     </a>
   );
 };

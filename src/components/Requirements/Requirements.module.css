@@ -1,0 +1,11 @@
+.root {
+
+}
+
+.root > * {
+    margin-bottom: 10px;
+}
+
+.title {
+    font-weight: bold;
+}

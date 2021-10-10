@@ -8,4 +8,9 @@
     letter-spacing: 0.00938em;
     cursor: text;
     background-color: #10161e;
+    height: 46px;
+    width: 100%;
+    max-width: 500px;
+    padding-left: 20px;
+    padding-right: 20px;
 }

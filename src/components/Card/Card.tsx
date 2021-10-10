@@ -1,12 +1,14 @@
 import type { ReactNode } from "react";
 import styles from "./Card.module.css";
+import cx from "classnames";
 
 type Props = {
   children: ReactNode;
+  className?: string;
 };
 
-const Card = ({ children }: Props) => {
-  return <div className={styles.root}>{children}</div>;
+const Card = ({ children, className }: Props) => {
+  return <div className={cx(styles.root, className)}>{children}</div>;
 };
 
-export default Card;
+export { Card };

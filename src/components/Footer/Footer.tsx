@@ -5,20 +5,11 @@ import { Link } from "../Link/Link";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div>
-        Repository:{" "}
-        <Link
-          href="https://github.com/jaworek/ste-calculator"
-          text="https://github.com/jaworek/ste-calculator"
-        />
-      </div>
-      <div>
-        Data source:{" "}
-        <Link
-          href="https://github.com/starterra/tools"
-          text="https://github.com/starterra/tools"
-        />
-      </div>
+      <Link
+        href="https://github.com/jaworek/ste-calculator"
+        content="Repository"
+      />
+      <Link href="https://github.com/starterra/tools" content="Data source" />
     </footer>
   );
 };

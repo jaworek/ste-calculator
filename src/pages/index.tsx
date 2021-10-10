@@ -15,6 +15,7 @@ import { Button } from "../components/Button/Button";
 import { Faction } from "../components/Faction/Faction";
 import Input from "../components/Input/Input";
 import { Loading } from "../components/Loading/Loading";
+import { Requirements } from "../components/Requirements/Requirements";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
@@ -56,20 +57,23 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <div className={styles.title}>
+        <span>Unofficial&nbsp;</span>
         <Image src={logoSrc} alt="" className={styles.logo} />
-        <h1 className={styles.title}>Unofficial STE calculator</h1>
+        <span>&nbsp;Energy Calculator</span>
+      </div>
 
+      <main className={styles.main}>
         <Disclaimer />
 
+        <Requirements />
+
         <div className={styles.walletInput}>
-          <div>
-            Terra wallet address:{" "}
-            <Input
-              value={walletAddress}
-              onChange={(event) => setWalletAddress(event.target.value)}
-            />
-          </div>
+          <div>Terra wallet address: </div>
+          <Input
+            value={walletAddress}
+            onChange={(event) => setWalletAddress(event.target.value)}
+          />
           <Button onClick={checkWallet} disabled={loading} />
         </div>
 
@@ -81,6 +85,10 @@ const Home: NextPage = () => {
 
             if (error) {
               return <Error error={error} />;
+            }
+
+            if (!data) {
+              return <div>Enter your wallet address to see statistics.</div>;
             }
 
             if (data) {
