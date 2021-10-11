@@ -16,6 +16,7 @@ import { Faction } from "../components/Faction/Faction";
 import Input from "../components/Input/Input";
 import { Loading } from "../components/Loading/Loading";
 import { Requirements } from "../components/Requirements/Requirements";
+import { Progress } from "../components/Progress/Progress";
 
 const URL = "https://starterra-tools-ste-be.herokuapp.com/ste/";
 
@@ -95,8 +96,11 @@ const Home: NextPage = () => {
               return (
                 <>
                   <Statistics data={data} />
-                  <Tier steValue={data.ste_value} faction={data.faction} />
-                  <Faction faction={data.faction} />
+                  <div style={{ display: "flex" }}>
+                    <Tier steValue={data.ste_value} faction={data.faction} />
+                    <Faction faction={data.faction} />
+                  </div>
+                  <Progress steValue={data.ste_value} />
                 </>
               );
             }

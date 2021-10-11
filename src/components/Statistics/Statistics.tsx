@@ -7,7 +7,7 @@ const Statistics = ({ data }: { data: Data }) => {
     <div>
       <div>Address: {data.address}</div>
       <div className={styles.root}>
-        <div className={styles.lp}>{data.lp_amount.toFixed(2)} LP * 1.25</div>
+        <div className={styles.lp}>{data.lp_amount?.toFixed(2)} LP * 1.25</div>
         <div className={styles.stt}>+ {data.stt_amount} STT</div>
         <div className={styles.stt}>=</div>
         <div className={styles.ste}>

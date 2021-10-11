@@ -1,0 +1,23 @@
+.progressBar {
+    border-radius: 27px;
+    border: 3px solid white;
+    width: 100%;
+    height: 25px;
+    display: flex;
+    position: relative;
+}
+
+.edek {
+    width: 0;
+    transition: width 2s;
+}
+
+.ste250 {
+  position: absolute;
+  left: 8.33%;
+}
+
+.ste3000 {
+    position: absolute;
+    left: 100%;
+}
